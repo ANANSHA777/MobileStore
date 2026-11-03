@@ -1,0 +1,11 @@
+# Local environment & OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE & Editor files
+.vscode/
+.idea/
+
+# Optional: Ignore sensitive DB password config if you use environment variables
+# config.local.php

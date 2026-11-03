@@ -1,0 +1,230 @@
+/* ============================================================
+   TECHMOBILE — Tailwind Supplement v6.0  (Vibrant Light Mode)
+   Handles: Plus Jakarta Sans font, custom animations, scrollbar,
+   glassmorphism nav, hero gradient, status badges, .field inputs,
+   modal, qty-btn, tbl-wrap, metric glows, admin-link, pulse
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+/* ── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+/* ── Custom Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #a78bfa; }
+
+/* ── Glassmorphism Navbar ───────────────────────────────────── */
+.glass-nav {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.65);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Hero Gradient (Electric Violet) ───────────────────────── */
+.hero-gradient {
+    background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 35%, #7c3aed 65%, #4338ca 100%);
+    position: relative;
+    overflow: hidden;
+}
+.hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: 15%;
+    width: 65%; height: 200%;
+    background: radial-gradient(ellipse, rgba(196, 181, 253, 0.28) 0%, transparent 65%);
+    pointer-events: none;
+}
+.hero-gradient::after {
+    content: '';
+    position: absolute;
+    bottom: -25%; right: 3%;
+    width: 40%; height: 130%;
+    background: radial-gradient(ellipse, rgba(52, 211, 153, 0.15) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+/* ── Product Card Image Zoom ────────────────────────────────── */
+.product-img-wrap { overflow: hidden; border-radius: 0; }
+.product-img-wrap img {
+    transition: transform 0.42s cubic-bezier(.25,.46,.45,.94);
+    display: block;
+}
+.product-card:hover .product-img-wrap img { transform: scale(1.06); }
+
+/* ── Filter Chips ───────────────────────────────────────────── */
+.chip-active {
+    background: #7c3aed !important;
+    color: #ffffff !important;
+    border-color: #7c3aed !important;
+    box-shadow: 0 2px 8px rgba(124,58,237,0.28);
+}
+
+/* ── Card Hover Lift ────────────────────────────────────────── */
+.transition-card {
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.transition-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(124,58,237,0.10);
+}
+
+/* ── Animations ─────────────────────────────────────────────── */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.65); }
+    to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
+}
+
+.animate-fade-up    { animation: fadeInUp 0.42s ease both; }
+.animate-scale-in   { animation: scaleIn 0.38s cubic-bezier(.34,1.56,.64,1) both; }
+.animate-slide-down { animation: slideDown 0.22s ease both; }
+
+/* ── Modal ──────────────────────────────────────────────────── */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 8, 25, 0.62);
+    z-index: 900;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(6px);
+}
+.modal-backdrop.open { display: flex; }
+.modal-box { animation: fadeInUp 0.26s ease both; }
+
+/* ── Status Badges ──────────────────────────────────────────── */
+.status-pending    { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+.status-processing { background: #f0f9ff; color: #075985; border: 1px solid #7dd3fc; }
+.status-shipped    { background: #f5f3ff; color: #5b21b6; border: 1px solid #c4b5fd; }
+.status-delivered  { background: #ecfdf5; color: #065f46; border: 1px solid #6ee7b7; }
+.status-cancelled  { background: #fff1f2; color: #be123c; border: 1px solid #fda4af; }
+
+/* ── Form Field (Violet Focus) ──────────────────────────────── */
+.field {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.925rem;
+    background: #f8fafc;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+    line-height: 1.5;
+}
+.field:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3.5px rgba(124, 58, 237, 0.12);
+    background: #ffffff;
+}
+.field::placeholder { color: #94a3b8; }
+textarea.field { resize: vertical; min-height: 100px; }
+
+/* ── Password Input Wrapper ─────────────────────────────────── */
+.pw-wrap { position: relative; }
+.pw-wrap .field { padding-right: 2.75rem; }
+.pw-toggle {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    transition: color 0.15s;
+}
+.pw-toggle:hover { color: #7c3aed; }
+.pw-toggle svg { width: 18px; height: 18px; }
+
+/* ── Metric Cards Glow ──────────────────────────────────────── */
+.metric-glow-violet  { box-shadow: 0 4px 24px rgba(124, 58, 237, 0.11); }
+.metric-glow-emerald { box-shadow: 0 4px 24px rgba(16, 185, 129, 0.11); }
+.metric-glow-amber   { box-shadow: 0 4px 24px rgba(245, 158, 11,  0.11); }
+.metric-glow-slate   { box-shadow: 0 4px 24px rgba(15,  23,  42,  0.07); }
+
+/* ── Success Pulse ──────────────────────────────────────────── */
+@keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0   rgba(16, 185, 129, 0.45); }
+    70%  { box-shadow: 0 0 0 16px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(16, 185, 129, 0); }
+}
+.pulse-emerald { animation: pulse-ring 1.5s 0.4s ease-out 2; }
+
+/* ── Admin Sub-Nav pill ─────────────────────────────────────── */
+.admin-link { transition: background 0.15s, color 0.15s; }
+.admin-link.active {
+    background: rgba(167, 139, 250, 0.22);
+    color: #ddd6fe;
+}
+
+/* ── Qty Button ─────────────────────────────────────────────── */
+.qty-btn {
+    width: 32px; height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.14s, border-color 0.14s, color 0.14s, transform 0.1s;
+    line-height: 1;
+    user-select: none;
+}
+.qty-btn:hover {
+    background: #7c3aed;
+    color: #ffffff;
+    border-color: #7c3aed;
+    transform: scale(1.08);
+}
+
+/* ── Responsive Table Scroll ────────────────────────────────── */
+.tbl-wrap {
+    overflow-x: auto;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+}
+
+/* ── Subtle Image Fallback placeholder ──────────────────────── */
+.img-placeholder {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e9d5ff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a78bfa;
+    font-size: 3.5rem;
+}
