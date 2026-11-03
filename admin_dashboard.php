@@ -7,7 +7,7 @@ require_once 'db.php';
 requireAdmin();
 
 $admin        = $_SESSION['user'];
-$revenue      = (float)$pdo->query('SELECT COALESCE(SUM(total_amount),0) FROM orders WHERE status != 'Cancelled'')->fetchColumn();
+$revenue      = (float)$pdo->query("SELECT COALESCE(SUM(total_amount),0) FROM orders WHERE status != 'Cancelled'")->fetchColumn();
 $orders_cnt   = (int)$pdo->query('SELECT COUNT(*) FROM orders')->fetchColumn();
 $products_cnt = (int)$pdo->query('SELECT COUNT(*) FROM products')->fetchColumn();
 $customers_cnt= (int)$pdo->query('SELECT COUNT(*) FROM users WHERE role = "customer"')->fetchColumn();
