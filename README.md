@@ -5,9 +5,11 @@ Simple Dockerized PHP & MySQL E-Commerce Application
 [![MySQL](https://img.shields.io/badge/MySQL-Aiven_Cloud-orange.svg)](https://aiven.io/)
 [![Hosting](https://img.shields.io/badge/Render-Live_Demo-green.svg)](https://techmobile.onrender.com)
 
-🚀 **Live Site:** [https://techmobile.onrender.com](https://techmobile.onrender.com)
 
 ---
+## 📌 Project Overview
+
+**TECHMOBILE** is a full-featured, responsive e-commerce web application engineered for purchasing mobile devices and accessories. Built with custom **PHP 8.2** and **MySQL**, the application is containerized using **Docker** and deployed with a continuous integration/continuous deployment (CI/CD) pipeline from GitHub directly to **Render**, backed by a production-grade **Aiven Cloud MySQL** database.
 
 ## 📌 Features
 * 🛒 Product Catalog & Shopping Cart
@@ -24,6 +26,8 @@ Simple Dockerized PHP & MySQL E-Commerce Application
 * **Hosting:** Render
 
 ---
+
+
 
 ## 🚀 Local Setup
 
